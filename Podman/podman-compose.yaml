@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  # The GCP Mesh Pod
+  gcp-emulators:
+    image: node:20-slim
+    container_name: olympus-gcp-mesh
+    ports:
+      - "4000:4000" # Firebase UI
+      - "8082:8082" # Firestore
+      - "9099:9099" # Auth
+      - "8085:8085" # Pub/Sub
+      - "8090:8090" # Datastore
+      - "8086:8086" # Bigtable
+    volumes:
+      - ./data:/data
+    command: >
+      bash -c "npm install -g firebase-tools && 
+      firebase emulators:start --project demo-olympus --import=/data/firebase --export-on-exit"
