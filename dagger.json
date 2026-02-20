@@ -1,0 +1,5 @@
+﻿{
+    "sdk":  "go",
+    "name":  "olympusinfrastructure",
+    "source":  "70000-Environmental-Harness/dagger"
+}
