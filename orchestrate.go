@@ -6,7 +6,6 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
-	// 	"runtime"
 )
 
 func main() {
@@ -16,6 +15,10 @@ func main() {
 	}
 
 	fmt.Printf("Starting Olympus Workstation Cloud in [%s] mode...\n", mode)
+
+	// High-Fidelity Substrate: VPC Bridge
+	bridge := NewVPCBridge()
+	fmt.Printf("🌐 VPC Bridge Active (Latency: %v)\n", bridge.Latency)
 
 	if mode == "hybrid" || mode == "sandbox" {
 		startPodmanMesh()
@@ -68,10 +71,8 @@ func startNativeBridges() {
 			if _, err := os.Stat(mainGo); err == nil {
 				fmt.Printf("🚀 Starting Bridge: %s (%s)\n", bridgeName, cluster)
 
-				// Run bridge in background
 				cmd := exec.Command("go", "run", mainGo)
 				cmd.Dir = filepath.Join(bridgeDir, bridgeName)
-				// We don't want to block, so we don't call Wait()
 				if err := cmd.Start(); err != nil {
 					fmt.Printf("Failed to start %s: %v\n", bridgeName, err)
 				}
