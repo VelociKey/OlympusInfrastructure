@@ -1,6 +1,6 @@
 # OlympusInfrastructure
 
-Central orchestration and sandbox management for the Olympus fleet.
+Central orchestration and sandbox management for **provisioning** the Olympus fleet.
 
 ## Sovereign Pod Strategy
 All GCP emulators are deployed within a unified Pod in Podman Desktop. This provides:
