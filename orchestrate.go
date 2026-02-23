@@ -27,22 +27,29 @@ func main() {
 	}
 
 	if mode == "hybrid" || mode == "native" {
+		startCoreAgents()
 		startNativeManagers()
 		startNativeBridges()
 		checkHealth()
 	}
-	
+
 	fmt.Println("🌌 Olympus Fleet is now OPERATIONAL. Press Ctrl+C to stop.")
 	select {} // Block forever to keep subprocesses alive
 }
 
 func checkHealth() {
 	fmt.Println("🏥 Running Fleet Health Checks...")
-	ports := []string{"8092", "8091", "8096", "8098", "8095", "8093", "8094", "8097", "8099", "8090"}
-	
+	// Expanded port list based on genesis.json and Mesh Registry
+	// 8080-8089: Core Agents
+	// 8090-8099: GCP Emulators / Managers
+	ports := []string{
+		"8080", "8081", "8083", "8084", "8085", "8086", "8087", "8088", "8089",
+		"8090", "8091", "8092", "8093", "8094", "8095", "8096", "8097", "8098", "8099",
+	}
+
 	for _, port := range ports {
 		online := false
-		for i := 0; i < 5; i++ {
+		for i := 0; i < 3; i++ {
 			conn, err := net.DialTimeout("tcp", "localhost:"+port, 1*time.Second)
 			if err == nil {
 				fmt.Printf("✅ Port %s: ONLINE\n", port)
@@ -50,12 +57,54 @@ func checkHealth() {
 				online = true
 				break
 			}
-			time.Sleep(1 * time.Second)
+			time.Sleep(500 * time.Millisecond)
 		}
 		if !online {
 			fmt.Printf("❌ Port %s: OFFLINE\n", port)
 		}
 	}
+}
+
+func startCoreAgents() {
+	fmt.Println("🏗️  Starting Core Olympus Agents (Orchestration Mesh)...")
+
+	root := ".."
+	agents := []struct {
+		Name string
+		Path string
+	}{
+		{"MeshHub", "OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10520-Market-Coordination"},
+		{"Orchestrator", "OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10530-Orchestration-Control"},
+		{"Coder", "OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10620-Logic-Construction"},
+		{"Architect", "OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10610-Architectural-Synthesis"},
+		{"MemoryAnchor", "Olympus2/60000-Information-Storage/610-Memory-Anchors/900-MemoryAnchor"},
+		{"AegisGuardian", "Olympus2/00000-Identity-Foundations/010-Vision/900-AegisGuardian"},
+		{"SovereignAudit", "Olympus2/80000-System-Governance/820-Sovereign-Audit/900-SovereignAudit"},
+		{"KnowledgeHub", "Olympus2/30000-Federated-Services/310-Core-Registry/900-OlympusRegistry"},
+		{"Forge", "OlympusForge/90000-Enablement-Labs/900-Forge"},
+		{"Preflight", "OlympusFabric/70000-Environmental-Harness/730-Campaign-Execution"},
+		{"MCPGateway", "OlympusMCP/10000-Autonomous-Actors/MCPGateway"},
+	}
+
+	for _, agent := range agents {
+		mainGo := filepath.Join(root, agent.Path, "main.go")
+		if _, err := os.Stat(mainGo); err == nil {
+			fmt.Printf("🚀 Starting Agent: %s\n", agent.Name)
+
+			cmd := exec.Command("go", "run", "main.go")
+			cmd.Dir = filepath.Join(root, agent.Path)
+			// Standardizing log output to Ephemeral Scratch
+			logPath := filepath.Join(root, "Olympus2/C0500-Agent-Intelligence-Outputs/LPSV", strings.ToLower(agent.Name)+".log")
+			logFile, _ := os.Create(logPath)
+			cmd.Stdout = logFile
+			cmd.Stderr = logFile
+
+			if err := cmd.Start(); err != nil {
+				fmt.Printf("Failed to start agent %s: %v\n", agent.Name, err)
+			}
+		}
+	}
+	fmt.Println("Core mesh orchestration sequence initiated.")
 }
 
 func startPodmanMesh() {
