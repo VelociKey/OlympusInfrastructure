@@ -73,17 +73,17 @@ func startCoreAgents() {
 		Name string
 		Path string
 	}{
-		{"MeshHub", "OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10520-Market-Coordination"},
-		{"Orchestrator", "OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10530-Orchestration-Control"},
-		{"Coder", "OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10620-Logic-Construction"},
-		{"Architect", "OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10610-Architectural-Synthesis"},
-		{"MemoryAnchor", "Olympus2/60000-Information-Storage/610-Memory-Anchors/900-MemoryAnchor"},
-		{"AegisGuardian", "Olympus2/00000-Identity-Foundations/010-Vision/900-AegisGuardian"},
-		{"SovereignAudit", "Olympus2/80000-System-Governance/820-Sovereign-Audit/900-SovereignAudit"},
-		{"KnowledgeHub", "Olympus2/30000-Federated-Services/310-Core-Registry/900-OlympusRegistry"},
-		{"Forge", "OlympusForge/90000-Enablement-Labs/900-Forge"},
-		{"Preflight", "OlympusFabric/70000-Environmental-Harness/730-Campaign-Execution"},
-		{"MCPGateway", "OlympusMCP/10000-Autonomous-Actors/MCPGateway"},
+		{"MeshHub", "olympus.fleet/00SDLC/OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10520-Market-Coordination"},
+		{"Orchestrator", "olympus.fleet/00SDLC/OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10530-Orchestration-Control"},
+		{"Coder", "olympus.fleet/00SDLC/OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10620-Logic-Construction"},
+		{"Architect", "olympus.fleet/00SDLC/OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10610-Architectural-Synthesis"},
+		{"MemoryAnchor", "olympus.fleet/00SDLC/Olympus2/60000-Information-Storage/610-Memory-Anchors/900-MemoryAnchor"},
+		{"AegisGuardian", "olympus.fleet/00SDLC/Olympus2/00000-Identity-Foundations/010-Vision/900-AegisGuardian"},
+		{"SovereignAudit", "olympus.fleet/00SDLC/Olympus2/80000-System-Governance/820-Sovereign-Audit/900-SovereignAudit"},
+		{"KnowledgeHub", "olympus.fleet/00SDLC/Olympus2/30000-Federated-Services/310-Core-Registry/900-OlympusRegistry"},
+		{"Forge", "olympus.fleet/00SDLC/OlympusForge/90000-Enablement-Labs/900-Forge"},
+		{"Preflight", "olympus.fleet/00SDLC/OlympusFabric/70000-Environmental-Harness/730-Campaign-Execution"},
+		{"MCPGateway", "olympus.fleet/00SDLC/OlympusMCP/10000-Autonomous-Actors/MCPGateway"},
 	}
 
 	for _, agent := range agents {
@@ -94,7 +94,7 @@ func startCoreAgents() {
 			cmd := exec.Command("go", "run", "main.go")
 			cmd.Dir = filepath.Join(root, agent.Path)
 			// Standardizing log output to Ephemeral Scratch
-			logPath := filepath.Join(root, "Olympus2/C0500-Agent-Intelligence-Outputs/LPSV", strings.ToLower(agent.Name)+".log")
+			logPath := filepath.Join(root, "olympus.fleet/00SDLC/Olympus2/C0500-Agent-Intelligence-Outputs/LPSV", strings.ToLower(agent.Name)+".log")
 			logFile, _ := os.Create(logPath)
 			cmd.Stdout = logFile
 			cmd.Stderr = logFile

@@ -1,5 +1,3 @@
-module OlympusInfrastructure
+module olympus.fleet/00SDLC/OlympusInfrastructure
 
-go 1.25.7
-
-// Local Resolution
+go 1.26.0

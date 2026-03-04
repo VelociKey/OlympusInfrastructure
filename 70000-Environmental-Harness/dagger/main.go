@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"strings"
-	"dagger/olympusinfrastructure/internal/dagger"
+	"olympus.fleet/00SDLC/OlympusForge/70000-Environmental-Harness/dagger/olympusinfrastructure/internal/dagger"
 )
 
 type Olympusinfrastructure struct{}
