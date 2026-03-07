@@ -78,7 +78,7 @@ func startCoreAgents() {
 		{"Coder", "olympus.fleet/00SDLC/OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10620-Logic-Construction"},
 		{"Architect", "olympus.fleet/00SDLC/OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10610-Architectural-Synthesis"},
 		{"MemoryAnchor", "olympus.fleet/00SDLC/Olympus2/60000-Information-Storage/610-Memory-Anchors/900-MemoryAnchor"},
-		{"AegisGuardian", "olympus.fleet/00SDLC/Olympus2/00000-Identity-Foundations/010-Vision/900-AegisGuardian"},
+		{"AegisGuardian", "olympus.fleet/00SDLC/Olympus2/01000-Identity-Foundations/010-Vision/900-AegisGuardian"},
 		{"SovereignAudit", "olympus.fleet/00SDLC/Olympus2/80000-System-Governance/820-Sovereign-Audit/900-SovereignAudit"},
 		{"KnowledgeHub", "olympus.fleet/00SDLC/Olympus2/30000-Federated-Services/310-Core-Registry/900-OlympusRegistry"},
 		{"Forge", "olympus.fleet/00SDLC/OlympusForge/90000-Enablement-Labs/900-Forge"},
