@@ -73,7 +73,7 @@ func startCoreAgents() {
 		Name string
 		Path string
 	}{
-		{"MeshHub", "olympus.fleet/00SDLC/OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10520-Market-Coordination"},
+		{"MeshHub", "olympus.fleet/00SDLC/OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10520-MeshHub"},
 		{"Orchestrator", "olympus.fleet/00SDLC/OlympusActors-Delegation/10000-Autonomous-Actors/10500-Delegation-Management/10530-Orchestration-Control"},
 		{"Coder", "olympus.fleet/00SDLC/OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10620-Logic-Construction"},
 		{"Architect", "olympus.fleet/00SDLC/OlympusActors-Cognition/10000-Autonomous-Actors/10600-Cognitive-Specialties/10610-Architectural-Synthesis"},
