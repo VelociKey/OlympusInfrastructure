@@ -176,7 +176,7 @@ func startNativeBridges() {
 		}
 
 		cluster := entry.Name()
-		bridgeDir := filepath.Join(root, cluster, "20000-Context-Bridges")
+		bridgeDir := filepath.Join(root, cluster, "30000-Context-Bridges")
 		if _, err := os.Stat(bridgeDir); err != nil {
 			continue
 		}
