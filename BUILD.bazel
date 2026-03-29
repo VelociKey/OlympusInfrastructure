@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "OlympusInfrastructure_lib",
+    srcs = [
+        "orchestrate.go",
+        "vpc_bridge.go",
+    ],
+    importpath = "olympus.fleet/00SDLC/OlympusInfrastructure",
+    visibility = ["//visibility:private"],
+)
+
+go_binary(
+    name = "OlympusInfrastructure",
+    embed = [":OlympusInfrastructure_lib"],
+    visibility = ["//visibility:public"],
+)
